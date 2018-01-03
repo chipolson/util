@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+CHROOT_DIR=/home/colson/chroot
+mount -t proc proc $CHROOT_DIR/proc/
+mount -t sysfs sys $CHROOT_DIR/sys/
+mount -o bind /dev $CHROOT_DIR/dev/
+mount -o bind /dev $CHROOT_DIR/dev/pts
+mount -o bind /home $CHROOT_DIR/home
+
+WD=$(`pwd`)
+
+chroot $CHROOT_DIR /bin/env -i \
+    HOME=/root TERM="$TERM" PS1='[\u@f24chroot \W]\$ ' \
+    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/bin \
+    cd $WD; /bin/bash --login
+
+popd
+
+echo "Exiting Fedora chroot"
+umount $CHROOT_DIR/dev/
+umount $CHROOT_DIR/dev/pts
+umount $CHROOT_DIR/sys/
+umount $CHROOT_DIR/proc/
+umount $CHROOT_DIR/home

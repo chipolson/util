@@ -1,0 +1,24 @@
+			<target name="meson" path="REPO" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>build_meson.pl</buildCommand>
+				<buildArguments>/home/colson/dev/PROJECT/REPO</buildArguments>
+				<buildTarget>meson</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>false</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="buildroot" path="REPO" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>build_buildroot.pl</buildCommand>
+				<buildArguments>/home/colson/dev/PROJECT/REPO</buildArguments>
+				<buildTarget/>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>false</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="buildroot reconfigure" path="REPO" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>build_buildroot.pl</buildCommand>
+				<buildArguments>/home/colson/dev/PROJECT/REPO -o reconfigure</buildArguments>
+				<buildTarget/>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>false</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
