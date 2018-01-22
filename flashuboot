@@ -1,0 +1,11 @@
+#!/bin/sh
+IMAGE=$1
+
+echo run save_evs
+echo setenv server_ip 192.168.111.36
+echo setenv serverip 192.168.111.36 
+echo setenv gatewayip 192.168.111.1
+echo setenv netmask 255.255.255.0
+echo setenv ipaddr 192.168.111.70
+echo bubt $IMAGE
+echo run restore_evs

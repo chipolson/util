@@ -27,8 +27,7 @@ sub getProject {
     my ($dir) = @_;
     
     if(!defined($dir) || ($dir eq "")) {
-    $dir = getcwd();
-    print("dir: $dir\n");
+	$dir = getcwd();
     }
 
     if(!($dir =~ m|($dev/([^/]*))|)) {
@@ -42,17 +41,18 @@ sub getRepo {
     
     if(!defined($dir) || ($dir eq "")) {
 	$dir = getcwd();
-	print("dir: $dir\n");
     }
 
     if(!($dir =~ m|($dev/[^/]*/([^/]*))|)) {
 	die("$dir: Not in repository working directory\n");
     }
-    return { "path" => $1, "name" => $2 };
+    
+    my $project = getProject($dir);    
+    return { "path" => $1, "name" => $2, "project" => $project };
 }
 
 sub genFile {
-    my ($template, $target, $project, $repo) = @_;
+    my ($template, $target, $key, $repl) = @_;
 
     my $template_fn = "$dev/util/$template";
     local $/ = undef;
@@ -60,8 +60,7 @@ sub genFile {
     my $text = <$template_fd>;
     close($template_fd);
 
-    $text =~ s/PROJECT/$project/g;
-    $text =~ s/REPO/$repo/g;
+    $text =~ s/$key/$repl/g;
 
     open(my $target_fd, ">", $target)  || die("Can't open $target file: $!");
     print $target_fd $text;

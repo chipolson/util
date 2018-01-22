@@ -1,0 +1,5 @@
+setenv ipaddr 192.168.11.70
+setenv netmask 255.255.255.0
+setenv sf_tftp_server_ip 192.168.111.36
+setenv sf_tftp_image_name colson/rootfs.ext2
+run starry-flash
