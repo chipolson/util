@@ -1,0 +1,19 @@
+sysadminctl set --type stringlist network.wdev0sta0.addresses 10.248.1.3/24
+sysadminctl set wireless.radio0.channel 36
+sysadminctl set wireless.radio0.enabled True
+sysadminctl set wireless.radio0.mu_mimo 0
+sysadminctl set wireless.radio0.physical_interface "wdev0"
+sysadminctl set wireless.radio0.radio_mode "STA"
+sysadminctl set wireless.radio0.rxantmask 1
+sysadminctl set wireless.radio0.rxsop 1
+sysadminctl set wireless.radio0.txantmask 1
+sysadminctl commit
+reboot
+
+setenv ipaddr 192.168.111.71
+setenv netmask 255.255.255.0
+setenv serverip 192.168.111.36
+sleep 1
+setenv sf_tftp_server_ip 192.168.111.36
+sleep 1
+setenv sf_tftp_image_name colson/rootfs.ext2

@@ -1,3 +1,6 @@
+# Temporary files
+*~
+
 # CMake
 CMakeCache.txt
 CMakeFiles
@@ -11,6 +14,10 @@ CTestTestfile.cmake
 
 #Meson
 builddir
+
+# Eclipse
+.cproject
+.project
 
 # C++
 

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $HOME/repos/docker-graphite
+docker run -p 8080:80 -p 12003:2003 -p 12004:2004 -p 17002:7002 -d nickstenning/graphite

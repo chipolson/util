@@ -1,0 +1,29 @@
+sysadminctl set --type stringlist network.wdev0ap0.addresses 10.247.1.2/24
+sysadminctl set wireless.radio0.channel 36
+sysadminctl set wireless.radio0.rxantmask 1
+sysadminctl set wireless.radio0.txantmask 1
+sysadminctl set wireless.radio0.enabled True
+sysadminctl set wireless.radio0.mu_mimo 0
+sysadminctl set wireless.radio0.physical_interface wdev0
+sysadminctl set wireless.radio0.radio_mode AP
+sysadminctl set wireless.radio0.rxsop 1
+sysadminctl commit
+reboot
+
+systemctl stop sysadmin
+rm -rf /var/sysadmin/*
+rm -rf /var/sysadminHistory/*
+systemctl start sysadmin
+/bin/gen-factory-settings.py /etc/sysadmin/shield.yaml /etc/sysadmin/migrations/
+sysadminctl commit
+sysadminctl trigger interfaces
+sysadminctl trigger commit-interfaces
+
+setenv ipaddr 192.168.111.70
+setenv netmask 255.255.255.0
+setenv serverip 192.168.111.36
+setenv sf_tftp_server_ip 192.168.111.36
+setenv sf_tftp_image_name colson/rootfs.ext2
+setenv sf_image_offset 5000
+run starry_flash
+
